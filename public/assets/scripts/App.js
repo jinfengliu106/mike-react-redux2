@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import MenuDrawer from './components/menu-drawer';
 import TopBar from './components/topbar';
 import ContentComponent from './components/content/ContentComponent';
-
 import AuthComponent from './components/authentication/AuthComponent';
-
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Provider from 'react-redux/es/components/Provider'
+import store from './store'
 
 class App extends Component {
 
@@ -22,13 +22,15 @@ class App extends Component {
 
   renderLoggedIn() {
     return (
-      <Router>
-      <MenuDrawer />
-      <div className="page-container">
-      <TopBar />
-      <ContentComponent />
-      </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <MenuDrawer />
+          <div className="page-container">
+            <TopBar />
+            <ContentComponent />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 
